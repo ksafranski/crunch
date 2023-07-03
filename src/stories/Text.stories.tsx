@@ -16,11 +16,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
-};
-
-export const HelpText: Story = {
   args: {
-    isHelpText: true,
+    isHelpText: false,
+  },
+  render: args => {
+    return (
+      <Text isHelpText={args.isHelpText}>
+        {args.text || 'Example Text Element'}
+      </Text>
+    );
   },
 };
+
+// export const HelpText: Story = {
+//   args: {
+//     isHelpText: true,
+//   },
+// };
