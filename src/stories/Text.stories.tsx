@@ -27,9 +27,3 @@ export const Primary: Story = {
     );
   },
 };
-
-// export const HelpText: Story = {
-//   args: {
-//     isHelpText: true,
-//   },
-// };
