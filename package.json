@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint --fix",
+    "test": "jest",
+    "test:watch": "jest --watchAll --colors",
     "build": "webpack",
     "storybook": "storybook dev -p 6006 -h 0.0.0.0",
     "build-storybook": "storybook build"
