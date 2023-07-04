@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Text } from '../index';
+import { useEffect, useRef } from 'react';
 
 const meta = {
   title: 'Example/Text',
@@ -20,8 +21,12 @@ export const Primary: Story = {
     isHelpText: false,
   },
   render: args => {
+    const ref = useRef(null);
+    useEffect(() => {
+      console.log(ref.current);
+    }, []);
     return (
-      <Text isHelpText={args.isHelpText}>
+      <Text ref={ref} isHelpText={args.isHelpText}>
         {args.text || 'Example Text Element'}
       </Text>
     );
