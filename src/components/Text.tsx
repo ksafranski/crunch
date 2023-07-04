@@ -1,12 +1,22 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, HTMLAttributes } from 'react';
 
-export const Text: FC<{
+interface TextProps
+  extends HTMLAttributes<HTMLSpanElement | HTMLParagraphElement> {
   text?: string;
   isHelpText?: boolean;
   children?: ReactElement | string;
-}> = ({ text, isHelpText, children }) => {
+}
+
+export const Text: FC<TextProps> = (props: TextProps) => {
+  const { text, children } = props;
+  const classNames = [
+    'cds',
+    'cds-text',
+    props.isHelpText ? 'cds-text_help' : '',
+    props.className,
+  ];
   return (
-    <span className={`cds cds-text ${isHelpText ? 'cds-text_help' : ''}`}>
+    <span className={classNames.join(' ')} {...props}>
       {text || children}
     </span>
   );
