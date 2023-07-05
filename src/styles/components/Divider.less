@@ -1,0 +1,40 @@
+@import '../variables.less';
+
+.cds {
+  &.cds-divider {
+    margin: @default-vertical-margin 0;
+    &.cds-divider {
+      &:not(.cds-divider--has_children) {
+        border-top: @border-width solid @border-color-base;
+      }
+    }
+
+    .cds-divider--children {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .cds-divider--children_bar {
+        flex: 1;
+
+        > div {
+          height: 0.1em;
+          border-top: @border-width solid @border-color-base;
+
+          &:first-of-type {
+            margin-right: 1em;
+          }
+
+          &:last-of-type {
+            margin-left: 1em;
+          }
+        }
+      }
+
+      .cds-divider--children_content {
+        flex: 0;
+        white-space: nowrap;
+        line-height: 1;
+      }
+    }
+  }
+}
