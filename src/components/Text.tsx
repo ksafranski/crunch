@@ -8,7 +8,7 @@ import {
 
 import { getClassNames } from '../utils/classNames';
 
-interface TextProps
+export interface TextProps
   extends HTMLAttributes<HTMLSpanElement | HTMLParagraphElement> {
   text?: string;
   type?:
