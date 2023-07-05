@@ -11,7 +11,14 @@ import { getClassNames } from '../utils/classNames';
 interface TextProps
   extends HTMLAttributes<HTMLSpanElement | HTMLParagraphElement> {
   text?: string;
-  isHelpText?: boolean;
+  type?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'danger'
+    | 'warning'
+    | 'success';
   children?: ReactElement | string;
   ref?: ForwardedRef<HTMLSpanElement | HTMLParagraphElement>;
 }
@@ -21,10 +28,10 @@ export const Text: FC<TextProps> = forwardRef(
     props: TextProps,
     ref: ForwardedRef<HTMLSpanElement | HTMLParagraphElement> = null
   ) => {
-    const { text, children } = props;
+    const { text, type = 'default', className, children } = props;
     const classNames = getClassNames('text', [
-      props.isHelpText ? 'cds-text_help' : '',
-      props.className,
+      type && `cds-text--${type}`,
+      className,
     ]);
     return (
       <span ref={ref} className={classNames} {...props}>

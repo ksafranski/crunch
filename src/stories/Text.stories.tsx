@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Text } from '../index';
-import { useEffect, useRef } from 'react';
 
 const meta = {
   title: 'Example/Text',
@@ -9,7 +8,20 @@ const meta = {
   tags: ['autodocs'],
   args: {
     text: 'Example text element',
-    isHelpText: false,
+  },
+  argTypes: {
+    type: {
+      control: { type: 'select' },
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'tertiary',
+        'danger',
+        'warning',
+        'success',
+      ],
+    },
   },
 } satisfies Meta<typeof Text>;
 
@@ -18,17 +30,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    isHelpText: false,
+    type: 'default',
   },
   render: args => {
-    const ref = useRef(null);
-    useEffect(() => {
-      console.log(ref.current);
-    }, []);
-    return (
-      <Text ref={ref} isHelpText={args.isHelpText}>
-        {args.text || 'Example Text Element'}
-      </Text>
-    );
+    return <Text type={args.type}>{args.text || 'Example Text Element'}</Text>;
   },
 };
