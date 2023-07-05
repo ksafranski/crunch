@@ -26,19 +26,39 @@ const gridCellExampleStyle = {
   padding: '1rem',
 };
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     columns: 3,
+    children: new Array(5)
+      .fill('')
+      .map((_, idx: number) => (
+        <Grid.Cell style={gridCellExampleStyle}>
+          Cell {(idx + 1).toString()}
+        </Grid.Cell>
+      )),
   },
   render: args => {
-    return (
-      <Grid {...args}>
-        <Grid.Cell style={gridCellExampleStyle}>foo</Grid.Cell>
-        <Grid.Cell style={gridCellExampleStyle}>foo</Grid.Cell>
-        <Grid.Cell style={gridCellExampleStyle}>foo</Grid.Cell>
-        <Grid.Cell style={gridCellExampleStyle}>foo</Grid.Cell>
-        <Grid.Cell style={gridCellExampleStyle}>foo</Grid.Cell>
-      </Grid>
-    );
+    return <Grid {...args}>{args.children}</Grid>;
+  },
+};
+
+export const Responsive: Story = {
+  args: {
+    columns: {
+      small: 1,
+      medium: 2,
+      large: 2,
+      xlarge: 3,
+    },
+    children: new Array(5)
+      .fill('')
+      .map((_, idx: number) => (
+        <Grid.Cell style={gridCellExampleStyle}>
+          Cell {(idx + 1).toString()}
+        </Grid.Cell>
+      )),
+  },
+  render: args => {
+    return <Grid {...args}>{args.children}</Grid>;
   },
 };

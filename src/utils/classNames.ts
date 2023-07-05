@@ -5,6 +5,7 @@ export const getClassNames = (
   appendClasses: (string | undefined)[]
 ): string => {
   return ['cds', `cds-${componentName.toLowerCase()}`, ...appendClasses]
+    .filter(v => v !== undefined)
     .join(' ')
     .trim();
 };

@@ -7,16 +7,17 @@ import {
 } from 'react';
 
 import { getClassNames } from '../utils/classNames';
+import { Breakpoints, getCurrentBreakpointName } from '../utils/breakpoints';
 
 export interface GridCellProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactElement | string;
+  children?: ReactElement | ReactElement[] | string | string[];
 }
 
 const Cell: FC<GridCellProps> = forwardRef(
   (props: GridCellProps, ref: ForwardedRef<HTMLDivElement> = null) => {
     return (
       <div ref={ref} {...props}>
-        foo
+        {props.children}
       </div>
     );
   }
@@ -27,8 +28,8 @@ type GridSubComponents = {
 };
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
-  columns?: number;
-  children?: ReactElement | ReactElement[] | string;
+  columns?: Breakpoints | number;
+  children?: ReactElement | ReactElement[] | string | string[];
   ref?: ForwardedRef<HTMLDivElement>;
 }
 
@@ -36,14 +37,21 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 const Grid: FC<GridProps> & GridSubComponents = forwardRef(
   (props: GridProps, ref: ForwardedRef<HTMLDivElement> = null) => {
     const { columns, className, children } = props;
-    const classNames = getClassNames('grid', [className]);
+    const appliedColumns =
+      typeof columns === 'object'
+        ? columns[getCurrentBreakpointName()]
+        : columns;
+    const classNames = getClassNames('grid', [
+      `cds-grid--cols-${appliedColumns}`,
+      className,
+    ]);
     return (
       <div
         ref={ref}
         className={classNames}
         {...props}
         style={Object.assign(props.style || {}, {
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
+          gridTemplateColumns: `repeat(${appliedColumns}, 1fr)`,
         })}
       >
         {children}
