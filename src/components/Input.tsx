@@ -5,6 +5,7 @@ import {
   forwardRef,
   ForwardedRef,
   FormEventHandler,
+  useEffect,
 } from 'react';
 
 import { getClassNames } from '../utils/classNames';
@@ -24,6 +25,8 @@ export interface InputProps
     | 'tel'
     | 'url';
   required?: boolean;
+  isInvalid?: boolean;
+  validationMessage?: string;
   ref?: ForwardedRef<HTMLDivElement & HTMLInputElement & HTMLLabelElement>;
 }
 
@@ -43,9 +46,14 @@ export const Input: FC<InputProps> = forwardRef(
       className,
       placeholder,
       required = false,
+      isInvalid = false,
+      validationMessage,
     } = props;
     const [currentValue, setCurrentValue] = useState(value);
-    const [isValid, setIsValid] = useState(true);
+    const [isValid, setIsValid] = useState(!isInvalid);
+    useEffect(() => {
+      setIsValid(!isInvalid);
+    }, [isInvalid]);
     const classNames = getClassNames('input', [
       `cds-input--${type}`,
       required && 'cds-input--required',
@@ -54,7 +62,9 @@ export const Input: FC<InputProps> = forwardRef(
     return (
       <div
         ref={ref}
-        className={`${classNames} ${!isValid ? 'cds-input--invalid' : ''}`}
+        className={`${classNames} ${
+          !isValid || isInvalid ? 'cds-input--invalid' : ''
+        }`}
       >
         {label && <label htmlFor={id}>{label}</label>}
         <input
@@ -70,6 +80,11 @@ export const Input: FC<InputProps> = forwardRef(
           onFocus={props.onFocus}
           onBlur={props.onBlur}
         />
+        {validationMessage && (
+          <div className='cds-input--validation-message'>
+            {validationMessage}
+          </div>
+        )}
       </div>
     );
   }
