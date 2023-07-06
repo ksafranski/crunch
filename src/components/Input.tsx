@@ -5,6 +5,8 @@ import {
   forwardRef,
   ForwardedRef,
   FormEventHandler,
+  FocusEventHandler,
+  useEffect,
 } from 'react';
 
 import { getClassNames } from '../utils/classNames';
@@ -23,6 +25,7 @@ export interface InputProps
     | 'email'
     | 'tel'
     | 'url';
+  required?: boolean;
   ref?: ForwardedRef<HTMLDivElement & HTMLInputElement & HTMLLabelElement>;
 }
 
@@ -41,10 +44,12 @@ export const Input: FC<InputProps> = forwardRef(
       onChange,
       className,
       placeholder,
+      required = false,
     } = props;
     const [currentValue, setCurrentValue] = useState(value);
     const classNames = getClassNames('input', [
       `cds-input--${type}`,
+      required && 'cds-input--required',
       className,
     ]);
     return (

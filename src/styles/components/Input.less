@@ -2,7 +2,14 @@
 
 .cds {
   &.cds-input {
+    label {
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
     input {
+      display: block;
+      width: auto;
       padding: @default-element-padding;
       border: 1px solid @border-color-base;
       border-radius: @border-radius;
@@ -11,6 +18,22 @@
 
       &:focus {
         border-color: @border-color-selected;
+      }
+    }
+
+    &.cds-input--required {
+      label {
+        &:after {
+          content: '*';
+          color: @color-danger;
+          padding-left: 0.2em;
+        }
+      }
+    }
+
+    &.cds-input--invalid {
+      input {
+        border-color: @color-danger;
       }
     }
   }

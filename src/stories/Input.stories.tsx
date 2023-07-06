@@ -12,6 +12,7 @@ const meta = {
   argTypes: {
     type: {
       control: { type: 'select' },
+      label: { type: 'string' },
       options: [
         'text',
         'number',
@@ -32,5 +33,13 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     type: 'text',
+  },
+};
+
+export const Labeled: Story = {
+  args: {
+    type: 'text',
+    required: true,
+    label: 'Example Label',
   },
 };
