@@ -15,8 +15,9 @@ export interface GridCellProps extends HTMLAttributes<HTMLDivElement> {
 
 const Cell: FC<GridCellProps> = forwardRef(
   (props: GridCellProps, ref: ForwardedRef<HTMLDivElement> = null) => {
+    const appliedClassNames = getClassNames('grid-cell', [props.className]);
     return (
-      <div ref={ref} {...props}>
+      <div ref={ref} {...props} className={appliedClassNames}>
         {props.children}
       </div>
     );

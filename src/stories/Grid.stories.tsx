@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Grid } from '../index';
-
 const { Cell } = Grid;
 
 Cell.displayName = 'Grid.Cell';
@@ -24,20 +22,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const gridCellExampleStyle = {
-  backgroundColor: '#ececec',
-  border: '1px solid #ccc',
-  padding: '1rem',
-};
-
 export const Default: Story = {
   args: {
     columns: 3,
     children: new Array(5)
       .fill('')
-      .map((_, idx: number) => (
-        <Cell style={gridCellExampleStyle}>Cell {(idx + 1).toString()}</Cell>
-      )),
+      .map((_, idx: number) => <Cell>Cell {(idx + 1).toString()}</Cell>),
   },
 };
 
@@ -51,8 +41,6 @@ export const Responsive: Story = {
     },
     children: new Array(5)
       .fill('')
-      .map((_, idx: number) => (
-        <Cell style={gridCellExampleStyle}>Cell {(idx + 1).toString()}</Cell>
-      )),
+      .map((_, idx: number) => <Cell>Cell {(idx + 1).toString()}</Cell>),
   },
 };
