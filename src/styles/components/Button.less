@@ -1,0 +1,21 @@
+@import '../variables.less';
+
+.cds {
+  &.cds-button {
+    button {
+      background-color: @color-primary;
+      color: @color-white;
+      border: none;
+      border-radius: @border-radius;
+      padding: @default-element-padding;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: darken(@color-primary, 10%);
+      }
+      &:active {
+        background-color: darken(@color-primary, 20%);
+      }
+    }
+  }
+}

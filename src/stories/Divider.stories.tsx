@@ -12,16 +12,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => {
-    return <Divider />;
-  },
+  args: {},
 };
 
 export const Content: Story = {
   args: {
     children: 'Divider Text',
-  },
-  render: args => {
-    return <Divider>{args.children}</Divider>;
   },
 };

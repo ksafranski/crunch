@@ -31,8 +31,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     type: 'default',
-  },
-  render: args => {
-    return <Text type={args.type}>{args.text || 'Example Text Element'}</Text>;
+    children: 'Example Text Element',
   },
 };

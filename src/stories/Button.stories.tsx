@@ -12,16 +12,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => {
-    return <Button text='Button' />;
+  args: {
+    text: 'Button',
   },
 };
 
 export const Children: Story = {
   args: {
     children: 'Button',
-  },
-  render: args => {
-    return <Button>{args.children}</Button>;
   },
 };

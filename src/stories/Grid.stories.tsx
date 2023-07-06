@@ -37,9 +37,6 @@ export const Default: Story = {
         </Grid.Cell>
       )),
   },
-  render: args => {
-    return <Grid {...args}>{args.children}</Grid>;
-  },
 };
 
 export const Responsive: Story = {
@@ -57,8 +54,5 @@ export const Responsive: Story = {
           Cell {(idx + 1).toString()}
         </Grid.Cell>
       )),
-  },
-  render: args => {
-    return <Grid {...args}>{args.children}</Grid>;
   },
 };
