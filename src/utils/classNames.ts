@@ -2,7 +2,7 @@
 // joins and trims the result
 export const getClassNames = (
   componentName: string,
-  appendClasses: (string | undefined)[]
+  appendClasses: (string | undefined | boolean)[]
 ): string => {
   return ['cds', `cds-${componentName.toLowerCase()}`, ...appendClasses]
     .filter(v => v !== undefined)
