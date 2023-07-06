@@ -5,8 +5,6 @@ import {
   forwardRef,
   ForwardedRef,
   FormEventHandler,
-  FocusEventHandler,
-  useEffect,
 } from 'react';
 
 import { getClassNames } from '../utils/classNames';
@@ -47,23 +45,30 @@ export const Input: FC<InputProps> = forwardRef(
       required = false,
     } = props;
     const [currentValue, setCurrentValue] = useState(value);
+    const [isValid, setIsValid] = useState(true);
     const classNames = getClassNames('input', [
       `cds-input--${type}`,
       required && 'cds-input--required',
       className,
     ]);
     return (
-      <div ref={ref} className={classNames} {...props}>
+      <div
+        ref={ref}
+        className={`${classNames} ${!isValid ? 'cds-input--invalid' : ''}`}
+      >
         {label && <label htmlFor={id}>{label}</label>}
         <input
-          id={id}
+          id={id && props.id}
           placeholder={placeholder}
           type={type}
           value={currentValue}
           onChange={e => {
             setCurrentValue(e.target.value);
             onChange && onChange(e);
+            if (required) setIsValid(e.target.value.toString().length > 0);
           }}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
         />
       </div>
     );
