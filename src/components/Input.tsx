@@ -41,8 +41,8 @@ export const Input: FC<InputProps> = forwardRef(
     const {
       label,
       value = '',
-      type = 'text',
       onChange,
+      type = 'text',
       className,
       placeholder,
       required = false,
@@ -59,6 +59,8 @@ export const Input: FC<InputProps> = forwardRef(
       required && 'cds-input--required',
       className,
     ]);
+    // Destructure and remove internally controlled props
+    const inputProps = (({ value, onChange, ...o }) => o)(props);
     return (
       <div
         ref={ref}
@@ -66,9 +68,9 @@ export const Input: FC<InputProps> = forwardRef(
           !isValid || isInvalid ? 'cds-input--invalid' : ''
         }`}
       >
-        {label && <label htmlFor={id}>{label}</label>}
+        {label && <label htmlFor={props.id || id}>{label}</label>}
         <input
-          id={id && props.id}
+          id={props.id || id}
           placeholder={placeholder}
           type={type}
           value={currentValue}
@@ -77,8 +79,7 @@ export const Input: FC<InputProps> = forwardRef(
             onChange && onChange(e);
             if (required) setIsValid(e.target.value.toString().length > 0);
           }}
-          onFocus={props.onFocus}
-          onBlur={props.onBlur}
+          {...inputProps}
         />
         {validationMessage && (
           <div className='cds-input--validation-message'>
