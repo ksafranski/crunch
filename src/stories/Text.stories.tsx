@@ -22,6 +22,9 @@ const meta = {
         'success',
       ],
     },
+    ref: {
+      control: false,
+    },
   },
 } satisfies Meta<typeof Text>;
 

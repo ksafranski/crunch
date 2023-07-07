@@ -14,6 +14,9 @@ const meta = {
       control: { type: 'select' },
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
     },
+    ref: {
+      control: false,
+    },
   },
 } satisfies Meta<typeof Heading>;
 

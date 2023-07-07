@@ -6,6 +6,14 @@ const meta = {
   title: 'Example/Button',
   component: Button,
   tags: ['autodocs'],
+  argTypes: {
+    onClick: {
+      control: { type: 'string', description: 'onChange Event Handler' },
+    },
+    ref: {
+      control: false,
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;

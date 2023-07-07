@@ -6,6 +6,11 @@ const meta = {
   title: 'Example/Divider',
   component: Divider,
   tags: ['autodocs'],
+  argTypes: {
+    ref: {
+      control: false,
+    },
+  },
 } satisfies Meta<typeof Divider>;
 
 export default meta;

@@ -24,6 +24,12 @@ const meta = {
         'url',
       ],
     },
+    onChange: {
+      control: { type: 'string', description: 'onChange Event Handler' },
+    },
+    ref: {
+      control: false,
+    },
   },
 } satisfies Meta<typeof Input>;
 

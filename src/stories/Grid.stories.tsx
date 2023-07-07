@@ -16,6 +16,9 @@ const meta = {
       control: { type: 'select' },
       options: [1, 2, 3, 4, 5],
     },
+    ref: {
+      control: false,
+    },
   },
 } satisfies Meta<typeof Grid>;
 
