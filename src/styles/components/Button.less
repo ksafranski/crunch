@@ -3,9 +3,12 @@
 .cds {
   &.cds-button {
     button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background-color: @color-primary;
       color: @color-white;
-      border: none;
+      border: 1px solid @color-primary;
       border-radius: @border-radius;
       padding: @default-element-padding;
       cursor: pointer;
@@ -15,6 +18,49 @@
       }
       &:active {
         background-color: darken(@color-primary, 20%);
+      }
+    }
+
+    &.cds-button--secondary {
+      button {
+        background-color: @color-secondary;
+        border: 1px solid @color-secondary;
+        &:hover {
+          background-color: darken(@color-secondary, 10%);
+        }
+        &:active {
+          background-color: darken(@color-secondary, 20%);
+        }
+      }
+    }
+
+    &.cds-button--ghost {
+      button {
+        background-color: transparent;
+        border: 1px solid @color-primary;
+        color: @color-primary;
+        &:hover {
+          background-color: @color-primary;
+          color: @color-white;
+        }
+        &:active {
+          background-color: darken(@color-primary, 20%);
+        }
+      }
+    }
+
+    &.cds-button--disabled {
+      button {
+        background-color: @color-disabled;
+        border: 1px solid darken(@color-disabled, 3%);
+        color: lighten(@color-disabled, 20%);
+        cursor: not-allowed;
+        &:hover {
+          background-color: @color-disabled;
+        }
+        &:active {
+          background-color: @color-disabled;
+        }
       }
     }
   }
