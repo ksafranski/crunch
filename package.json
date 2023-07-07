@@ -21,7 +21,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn format && yarn lint",
+      "eslint --fix",
       "git add"
     ]
   },
