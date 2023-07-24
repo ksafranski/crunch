@@ -15,6 +15,7 @@ const meta = {
       label: { type: 'string' },
       options: [
         'text',
+        'textarea',
         'number',
         'password',
         'date',
